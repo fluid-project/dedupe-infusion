@@ -20,8 +20,9 @@
     "unused": true,
     "strict": true,
     "trailing": true,
-
     "maxerr": 1000,
-
-    "node": true
+    "node": true,
+    "globals": {
+        "JSON": false
+    }
 }

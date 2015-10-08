@@ -1,0 +1,40 @@
+{
+    "name": "dedupe-infusion",
+    "description": "Micromodule script to deduplicate instances of Fluid's \"Infusion\" throughout an npm module tree",
+    "version": "1.0.0",
+    "author": {
+        "name": "The Fluid Project"
+    },
+    "bugs": {
+        "url": "http://issues.fluidproject.org/browse/FLUID"
+    },
+    "homepage": "http://fluidproject.org/infusion.html",
+    "dependencies": {
+        "glob": "^5.0.15"
+    },
+    "devDependencies": {
+        "grunt-contrib-jshint": "0.9.0",
+        "grunt": "0.4.5"
+    },
+    "license" : "BSD-3-Clause",
+    "keywords": [
+        "infusion",
+        "framework",
+        "dedupe",
+        "npm"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:fluid-project/dedupe-infusion.git"
+    },
+    "main": "./dedupe-infusion.js",
+    "engines": {
+        "node": ">=0.10"
+    },
+    "scripts": {
+        "test": "node test/test-dedupe-infusion.js"
+    },
+    "defaultOptions": {
+        "node_modules": "./node_modules"
+    }
+}

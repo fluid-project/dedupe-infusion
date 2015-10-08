@@ -54,7 +54,7 @@ dedupe.processFiles = function (infusions, node_modules) {
     }).filter(function (oneSegs) {
         return oneSegs.length === 1 || oneSegs[oneSegs.length - 2] === "node_modules";
     });
-    console.log("Found " + infusionSegs.length + " infusions");
+    console.log("Found " + infusionSegs.length + " infusion" + (infusionSegs.length === 1 ? "" : "s"));
     // Locate the copy of infusion at the shortest path depth
     infusionSegs.sort(function (a, b) {
         return a.length - b.length;
@@ -82,7 +82,7 @@ dedupe.processFiles = function (infusions, node_modules) {
 };
 
 dedupe.deleteFiles = function (toDelete) {
-    toDelete.each(function (relDir) {
+    toDelete.forEach(function (relDir) {
         var dir = path.resolve(relDir);
         console.log("Deleting " + dir);
         dedupe.deleteFolderRecursive(dir);
@@ -103,7 +103,7 @@ dedupe.dedupeInfusion = function (userOptions) {
         cwd: node_modules
     });
     var toDelete = dedupe.processFiles(files, node_modules);
-    if (toDelete) {
+    if (toDelete.isError) {
         dedupe.exitError(toDelete.message);
     } else {
         dedupe.deleteFiles(toDelete);

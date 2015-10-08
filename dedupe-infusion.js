@@ -99,21 +99,15 @@ dedupe.dedupeInfusion = function (userOptions) {
     var options = dedupe.shallowMerge({}, defaults, userOptions);
   
     var node_modules = options.node_modules;
-    glob("**/infusion", {
-            cwd: node_modules
-        }, function (err, files) {
-            if (err) {
-                dedupe.exitError(err);
-            } else {
-                var toDelete = dedupe.processFiles(files, node_modules);
-                if (toDelete) {
-                    dedupe.exitError(toDelete.message);
-                } else {
-                    dedupe.deleteFiles(toDelete);
-                }
-            }
-        }
-    );
+    var files = glob.sync("**/infusion", {
+        cwd: node_modules
+    });
+    var toDelete = dedupe.processFiles(files, node_modules);
+    if (toDelete) {
+        dedupe.exitError(toDelete.message);
+    } else {
+        dedupe.deleteFiles(toDelete);
+    }
 };
 
 dedupe.shallowMerge(dedupe.dedupeInfusion, dedupe);

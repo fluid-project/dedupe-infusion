@@ -1,13 +1,13 @@
 /*
 Dedupe Infusion
 
-Copyright 2015 Raising the Floor (International)
+Copyright 2015 Raising the Floor - International
 
 Licensed under the New BSD license. You may not use this file except in
 compliance with this License.
 
 You may obtain a copy of the License at
-https://github.com/gpii/kettle/LICENSE.txt
+https://github.com/fluid/dedupe-infusion/LICENSE.txt
 */
 
 "use strict";
@@ -20,7 +20,7 @@ var pkg = require("./package.json"),
 var dedupe = {};
 
 dedupe.shallowMerge = function (target/*,  ... */) {
-    for (var arg = 1; arg < arguments.length; ++ arg) {
+    for (var arg = 1; arg < arguments.length; ++arg) {
         var source = arguments[arg];
         for (var key in source) {
             target[key] = source[key];
@@ -49,7 +49,7 @@ dedupe.deleteFolderRecursive = function (path) {
 dedupe.processFiles = function (infusions, node_modules) {
     var infusionSegs = infusions.map(function (onePath) {
         // Whilst the "path" module exports an entry "path.sep" purportedly holding this path separator,
-        // in practice this is not the one used by the grunt file expander
+        // in practice this is not the one used by the glob file expander
         return onePath.split("/");
     }).filter(function (oneSegs) {
         return oneSegs.length === 1 || oneSegs[oneSegs.length - 2] === "node_modules";
@@ -75,7 +75,7 @@ dedupe.processFiles = function (infusions, node_modules) {
         };
     }
     var togo = [];
-    for (var i = 1; i < infusions.length; i++) {
+    for (var i = 1; i < infusions.length; ++i) {
         togo.push(node_modules + "/" + infusions[i]);
     }
     return togo;
